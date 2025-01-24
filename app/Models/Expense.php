@@ -15,6 +15,7 @@ class Expense extends Model
         'description',
         'total',
         'registered_at',
+        'paid'
     ];
 
     protected $casts = [

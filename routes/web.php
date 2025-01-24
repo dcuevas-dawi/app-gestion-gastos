@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('expenses', ExpenseController::class);
 });
 
+Route::post('/expenses/{expense}/toggle-paid', [ExpenseController::class, 'togglePaid'])->name('expenses.togglePaid');
+
 Route::resource('expenses', ExpenseController::class)->middleware('auth');
 
 require __DIR__.'/auth.php';

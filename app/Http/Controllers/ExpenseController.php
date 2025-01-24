@@ -12,8 +12,13 @@ class ExpenseController extends Controller
      */
     public function index()
     {
+        // Obtener todos los gastos del usuario autenticado
         $expenses = Expense::where('user_id', auth()->id())->get();
-        return view('expenses.index', compact('expenses'));
+
+        // Calcular el total acumulado
+        $total = $expenses->sum('total');
+
+        return view('expenses.index', compact('expenses', 'total'));
     }
 
     /**
@@ -35,7 +40,7 @@ class ExpenseController extends Controller
             'title' => 'required|max:255',
             'description' => 'nullable|max:500',
             'total' => 'required|numeric|min:0',
-            'registered_at' => 'required|date', // Cambiamos 'date' a 'registered_at'
+            'registered_at' => 'required|date',
         ]);
 
         // Crear un nuevo gasto asociado al usuario autenticado
@@ -43,7 +48,7 @@ class ExpenseController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'total' => $request->input('total'),
-            'registered_at' => $request->input('registered_at'), // Cambiamos 'date' a 'registered_at'
+            'registered_at' => $request->input('registered_at'),
             'user_id' => auth()->id(),
         ]);
 
@@ -97,5 +102,13 @@ class ExpenseController extends Controller
         $expense->delete();
 
         return redirect()->route('expenses.index')->with('success', 'Gasto eliminado correctamente.');
+    }
+
+    public function togglePaid(Expense $expense)
+    {
+        $expense->paid = !$expense->paid; // Alternar entre pagado/no pagado
+        $expense->save();
+
+        return redirect()->route('expenses.index')->with('status', 'Estado de gasto actualizado.');
     }
 }
