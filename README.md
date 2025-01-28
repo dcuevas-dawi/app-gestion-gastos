@@ -79,8 +79,6 @@ Asegúrate de tener instalados:
 
 ---
 
----
-
 ## Historias de usuario
 
 Una vez que hemos configurado el entorno y ejecutado `composer run dev`, nos aparecerá el mensaje de que la aplicación se está sirviendo en `localhost:8000`.
