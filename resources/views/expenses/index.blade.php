@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold text-gray-800 text-center mb-4">Lista de Gastos</h1>
         <table class="w-full border-collapse border border-gray-300">
             <thead>
-            <tr class="bg-gray-100">
+            <tr class="bg-gray-200">
                 <th class="border border-gray-300 px-4 py-2 text-left">Título</th>
                 <th class="border border-gray-300 px-4 py-2 text-left">Descripción</th>
                 <th class="border border-gray-300 px-4 py-2 text-right">Total (€)</th>
@@ -14,7 +14,7 @@
             </thead>
             <tbody>
             @foreach ($expenses as $expense)
-                <tr class="{{ $loop->even ? 'bg-gray-50' : 'bg-white' }}">
+                <tr class="{{ $loop->even ? 'bg-gray-100' : 'bg-white' }}">
                     <td class="border border-gray-300 px-4 py-2">{{ $expense->title }}</td>
                     <td class="border border-gray-300 px-4 py-2">{{ $expense->description }}</td>
                     <td class="border border-gray-300 px-4 py-2 text-right">{{ number_format($expense->total, 2) }}€</td>

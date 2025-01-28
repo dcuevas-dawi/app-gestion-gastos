@@ -35,7 +35,7 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        // Validaciones básicas
+        // Validaciones básicas | Requisito de la actividad
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'nullable|max:500',
